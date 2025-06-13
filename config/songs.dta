@@ -1,3 +1,21 @@
+(githubtest
+   (name
+      "Git Hub TEST")
+   (artist
+      "Thin Lizzy")
+   (song
+      (name songs/githubtest/githubtest)
+      (tracks ((guitar 2) (bass 2)))
+      (pans (0.0 0.0 0.0))
+      (vols (2.0 0.0 0.0))
+      (cores (-1 -1 -1))
+      (midi_file songs/githubtest/githubtest.mid))
+   (anim_tempo kTempoFast)
+   (preview 11400 32000)
+   (quickplay
+      (character_outfit funk1)
+      (guitar flying_v)
+      (venue fest)))
 (badreputation
    (name
       "Bad Reputation")
