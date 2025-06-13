@@ -2,6 +2,8 @@
 #include locale_80s.dta
 #include locale_authors.dta
 #include locale_extras.dta
+#include locale_rb_sections.dta
+
 (splash_anybutton
    "PRESS ANY BUTTON TO BEGIN")
 (splash_legal
