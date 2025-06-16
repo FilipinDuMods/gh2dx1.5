@@ -105,6 +105,7 @@
    (memcard_flow_entered FALSE)
    (retain_last_focus FALSE)
    (enter
+		{set $note_streak FALSE} ;enable note_streak or not
       {set $main_entered TRUE}
       {$this reset_player_settings}
       {if
