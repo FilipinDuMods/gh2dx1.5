@@ -1,3 +1,18 @@
+;Functions to enable/disable
+{set $no_extras FALSE} ;remove the extra features button
+{set $extras_datasettings FALSE} ;put the extra features in data settings button
+{set $extras_bonusmaterial TRUE} ;put the extra features in bonus videos button
+{set $note_streak FALSE} ;enable deluxe note_streak
+{set $autoplay_p1 FALSE} ;autoplay player 1
+{set $autoplay_p2 FALSE} ;autoplay player 2
+{set $disable_carrer FALSE} ;disable carrer
+{set $speedmod 1.0} ;deluxe song speed
+{set $trackspd 1.0} ;deluxe track speed
+{set $interval_p0 50} ;deluxe note_streak
+{set $interval_p1 50} ;deluxe note_streak
+{set $interval_p2 50} ;deluxe note_streak
+{set $songtitle FALSE} ;enable deluxe song title always on
+
 #include splash.dta
 #include manage_bands.dta
 #include mem_card.dta
@@ -12,7 +27,12 @@
 #include multiplayer.dta
 #include main.dta
 #include tutorials.dta
-#include options.dta
+{if $no_extras
+	#include options_original.dta}
+{if $extras_datasettings
+	#include options_extras_datasettings.dta}
+{if $extras_bonusmaterial
+	#include options_extras_bonusmaterial.dta}
 #include modifiers.dta
 #include practice.dta
 #include training.dta
@@ -30,16 +50,4 @@
       {option_str budget_config $cfg}
       {track_budget setup $cfg}
       {set $first_screen track_budget}}}
-
-;Functions to enable/disable
-{set $note_streak FALSE} ;enable deluxe note_streak
-{set $autoplay_p1 FALSE} ;autoplay player 1
-{set $autoplay_p2 TRUE} ;autoplay player 2
-{set $disable_carrer TRUE} ;disable carrer
-{set $speedmod 1.0} ;deluxe song speed
-{set $trackspd 1.0} ;deluxe track speed
-{set $interval_p0 50} ;deluxe note_streak
-{set $interval_p1 50} ;deluxe note_streak
-{set $interval_p2 50} ;deluxe note_streak
-{set $songtitle FALSE} ;deluxe songtitle always on
 {ui goto_screen $first_screen}

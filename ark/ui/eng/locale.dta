@@ -127,7 +127,13 @@
 (cant_delete_profile_msg
    "The currently selected band cannot be deleted.  To delete this band, first choose a different band using LOAD BAND or NEW BAND.")
 (op_bonus_material
-   "Bonus Videos")
+	{if_else $extras_bonusmaterial
+	"Extra Features"
+   "Bonus Videos"})
+(op_memcard
+	{if_else $extras_datasettings
+	"Extra Features"
+   "Data Settings"})
 (op_credits
    "Credits")
 (op_data_settings
@@ -136,8 +142,6 @@
    "Audio Settings ")
 (op_video_settings
    "Video Settings")
-(op_memcard
-   "Extra Features")
 (GAME_SETTINGS
    "AUDIO SETTINGS")
 (LEFT_PLAYER_1
@@ -657,15 +661,15 @@
 (unlock_profaceoff4
    "You know how whenever you play FACE-OFF Mode, your buddy screams about how you got the easier track and less notes and blah blah, out comes the waaahmbulance? No more, my shredding friend.\n\nCheck out PRO FACE-OFF Mode in the Multiplayer menu and go note-for-note in the ultimate guitarmageddon.\n\nHave fun,\nThe Management")
 (highscore_dummy_0
-   "GMS")
+   "Reiko")
 (highscore_dummy_1
-   "Scott")
+   "Devon")
 (highscore_dummy_2
-   "Cam")
+   "Gayle")
 (highscore_dummy_3
-   "jnack")
+   "Matt")
 (highscore_dummy_4
-   "Cisco")
+   "Kelly")
 (highscore_score_fmt
    "%s / %s")
 (highscore_start
