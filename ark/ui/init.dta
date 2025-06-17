@@ -35,7 +35,6 @@
 {set $note_streak FALSE} ;enable deluxe note_streak
 {set $autoplay_p1 FALSE} ;autoplay player 1
 {set $autoplay_p2 TRUE} ;autoplay player 2
-{set $vanilla_quickplay TRUE} ;enable the old faster quickplay from vanilla
 {set $disable_carrer TRUE} ;disable carrer
 {set $speedmod 1.0} ;deluxe song speed
 {set $trackspd 1.0} ;deluxe track speed
