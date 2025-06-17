@@ -8,13 +8,8 @@
    (memcard_flow_entered FALSE)
    (retain_last_focus FALSE)
    (enter
-	
-		;Functions to enable/disable
-		{set $note_streak FALSE} ;deluxe note_streak
-		;{$this disable main_career.btn} ;disable carrer button
-		{set $autoplay_p1 FALSE} ;autoplay player 1
-		{set $autoplay_p2 TRUE} ;autoplay player 2
-	
+		{if $disable_carrer
+			{$this disable main_career.btn}}
       {set $main_entered TRUE}
       {$this reset_player_settings}
       {if
