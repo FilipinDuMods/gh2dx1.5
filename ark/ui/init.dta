@@ -12,6 +12,7 @@
 {set $interval_p1 50} ;deluxe note_streak
 {set $interval_p2 50} ;deluxe note_streak
 {set $songtitle FALSE} ;enable deluxe song title always on
+{set $dxmodifiers TRUE} ;enable deluxe modifiers (select select in setlist)
 
 #include splash.dta
 #include manage_bands.dta
