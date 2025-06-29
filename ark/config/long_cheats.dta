@@ -25,9 +25,10 @@
          {!
             {ui in_transition}}
          {'||'
+			{if $modifiersincareer
             {==
                {ui current_screen}
-               sel_song_screen}
+               sel_song_screen}}
             {==
                {ui current_screen}
                qp_selsong_screen}

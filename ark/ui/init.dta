@@ -1,15 +1,16 @@
 ;Functions to enable/disable
-{set $quickplay_dx TRUE} ;enable the freeplay from deluxe (bass in singleplayer)
-{set $quickplay_vanilla FALSE} ;enable the original quickplay
-{set $dxmodifiers TRUE} ;enable deluxe modifiers (select select in setlist)
+{set $quickplay_dx TRUE} ;deluxe quickplay - freeplay from deluxe (bass in singleplayer)
+{set $quickplay_vanilla FALSE} ;original gh2 quickplay
+{set $dxmodifiers TRUE} ;deluxe modifiers (select select in setlist)
+{set $modifiersincareer FALSE} ;modifiers in career mode
 {set $no_extras FALSE} ;remove the extra features button
 {set $extras_datasettings FALSE} ;put the extra features in data settings button
 {set $extras_bonusmaterial TRUE} ;put the extra features in bonus videos button
-{set $note_streak FALSE} ;enable deluxe note_streak
+{set $note_streak FALSE} ;deluxe note_streak
 {set $autoplay_p1 FALSE} ;autoplay player 1
 {set $autoplay_p2 FALSE} ;autoplay player 2
 {set $disable_carrer FALSE} ;disable carrer
-{set $songtitle FALSE} ;enable deluxe song title always on
+{set $songtitle FALSE} ;deluxe song title always on
 {set $skip_selpart_screen FALSE} ;skip bass selection (for custom songs)
 {set $speedmod 1.0} ;deluxe song speed
 {set $trackspd 1.0} ;deluxe track speed
