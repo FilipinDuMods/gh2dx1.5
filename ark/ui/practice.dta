@@ -12,7 +12,9 @@
    (enter
       {gamecfg set practice_speed 0})
    (SELECT_START_MSG
-      {ui goto_screen practice_selpart_screen}
+	{if_else $skip_selpart_screen
+		{ui goto_screen practice_diff_screen}
+		{ui goto_screen practice_selpart_screen}}
       kDataUnhandled)}
 {new
    GHPanel
