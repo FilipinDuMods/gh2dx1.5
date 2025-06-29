@@ -1,172 +1,259 @@
+; credits to mariteaux for doing this
+; modifications by filipindumods.
+
+
 (excitement_level kExcitementOkay)
 (lighter off)
 (enter
-   {{$this dir}
-      add_sinks
-      $this
+   {{$this dir} add_sinks $this
       intro_start_msg
       crowd_update
       excitement
       crowd_hide
+      crowd_show
       crowd_lighters_slow
       crowd_lighters_fast
       crowd_lighters_off
       crowd_half_tempo
       crowd_double_tempo
-      crowd_normal_tempo}
-   {set
-      [excitement_level]
-      kExcitementOkay}
-   {set
-      [lighter]
-      off})
+      crowd_normal_tempo
+
+; lighting keyframes - filipindumods
+
+      lighting_nextkey
+      lighting_prevkey
+      lighting_firstkey
+
+; camera cuts system - mariteaux
+
+; ON/OFF
+
+      camera_control_on
+      camera_control_off
+
+; camera cuts - mariteaux
+
+; standard song cameras
+      camera_cycle_shot
+      camera_floor_farleft
+      camera_floor_farright
+      camera_floor_nearleft
+      camera_floor_nearright
+      camera_band_pov
+      camera_balcony_left
+      camera_balcony_right
+      camera_solo_far
+      camera_solo_near
+      camera_lighter
+
+; other cameras
+      camera_intro
+      camera_intro_fast
+      camera_intro_encore
+      camera_win
+      camera_win_encore
+      camera_win_encore_song
+      camera_lose
+
+; crowd event - mariteaux
+
+      music_end
+}
+; ---------------
+
+   {set [excitement_level] kExcitementOkay}
+   {set [lighter] off})
 (intro_start_msg
    ($fast $encore)
-   {set
-      $crowd.play_flags
-      {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}
+   {set $crowd.play_flags {'|' kPlayNoBlend kPlayGraphLoop kPlayRealTime}}
    {if_else
       $encore
       {do
-         {set
-            [excitement_level]
-            kExcitementGreat}
+         {set [excitement_level] kExcitementGreat}
          {$this crowd_update}}
       {do
          {$this set_fullness 0.5 0.5}
          {$this
             iterate_frac
-            (0.8
-               {main.drv play_group ok $crowd.play_flags})
-            (0.2
-               {main.drv play_group great $crowd.play_flags})}}}
-   {set
-      $crowd.play_flags
-      {'|' kPlayNoBlend kPlayGraphLoop}})
+            (0.8 {main.drv play_group ok $crowd.play_flags})
+            (0.2 {main.drv play_group great $crowd.play_flags})}}}
+   {set $crowd.play_flags {'|' kPlayNoBlend kPlayGraphLoop}})
 (animate
    ($bad $ok $great $idle $lighter)
    {do
       ($lighter_group lighter_slow)
       ($frac 0)
-      {if_else
-         {==
-            [lighter]
-            off}
+      {if_else {== [lighter] off}
          {set $lighter 0}
-         {set
-            $lighter_group
-            {if_else
-               {==
-                  [lighter]
-                  slow}
+         {set $lighter_group
+            {if_else {== [lighter] slow}
                lighter_slow
                lighter_fast}}}
-      {set
-         $frac
-         {- 1 $lighter}}
+      {set $frac {- 1 $lighter}}
       {'*=' $lighter $great}
       {'*=' $great $frac}
-      {$this
-         iterate_frac
-         ($bad
-            {main.drv play_group bad $crowd.play_flags})
-         ($ok
-            {main.drv play_group ok $crowd.play_flags})
-         ($great
-            {main.drv play_group great $crowd.play_flags})
-         ($idle
-            {main.drv play_group idle $crowd.play_flags})
-         ($lighter
-            {main.drv play_group $lighter_group $crowd.play_flags})}})
+      {$this iterate_frac
+         ($bad {main.drv play_group bad $crowd.play_flags})
+         ($ok {main.drv play_group ok $crowd.play_flags})
+         ($great {main.drv play_group great $crowd.play_flags})
+         ($idle {main.drv play_group idle $crowd.play_flags})
+         ($lighter {main.drv play_group $lighter_group $crowd.play_flags})}})
 (crowd_update
-   {if
-      {exists game}
+   {if {exists game}
       {$this set show_3d_only FALSE}
       {do
          ($peak_fullness 1)
-         {if
-            {==
-               {rnd aspect}
-               kWidescreenAspect}
+         {if {== {rnd aspect} kWidescreenAspect}
             {set $peak_fullness 0.7}}
-         {switch
-            [excitement_level]
-            (kExcitementBoot
-               {$this set_fullness 0.1 0.1})
-            (kExcitementBad
-               {$this set_fullness 0.25 0.25})
-            (kExcitementOkay
-               {$this set_fullness 0.5 0.5})
-            (kExcitementGreat
-               {$this set_fullness $peak_fullness $peak_fullness})
-            (kExcitementPeak
-               {$this set_fullness $peak_fullness $peak_fullness})}}
-      {switch
-         [excitement_level]
-         (kExcitementBoot
-            {$this animate 1.0 0.0 0.0 0.0 0.0})
-         (kExcitementBad
-            {$this animate 0.8 0.2 0.0 0.0 0.0})
-         (kExcitementOkay
-            {$this animate 0.0 0.8 0.2 0.0 0.0})
-         (kExcitementGreat
-            {$this animate 0.0 0.0 1.0 0.0 1.0})
-         (kExcitementPeak
-            {$this animate 0.0 0.0 1.0 0.0 1.0})}})
+         {switch [excitement_level]
+            (kExcitementBoot {$this set_fullness 0.1 0.1})
+            (kExcitementBad {$this set_fullness 0.25 0.25})
+            (kExcitementOkay {$this set_fullness 0.5 0.5})
+            (kExcitementGreat {$this set_fullness $peak_fullness $peak_fullness})
+            (kExcitementPeak {$this set_fullness $peak_fullness $peak_fullness})}}
+      {switch [excitement_level]
+         (kExcitementBoot {$this animate 1.0 0.0 0.0 0.0 0.0})
+         (kExcitementBad {$this animate 0.8 0.2 0.0 0.0 0.0})
+         (kExcitementOkay {$this animate 0.0 0.8 0.2 0.0 0.0})
+         (kExcitementGreat {$this animate 0.0 0.0 1.0 0.0 1.0})
+         (kExcitementPeak {$this animate 0.0 0.0 1.0 0.0 1.0})}})
 (excitement
    ($level)
-   {set
-      [excitement_level]
-      $level})
+   {set [excitement_level] $level})
 (crowd_hide
-   {if
-      {exists game}
+   {if {exists game}
       {$this set show_3d_only TRUE}})
+(crowd_show
+   {if {exists game}
+      {$this set show_3d_only FALSE}})
 (crowd_lighters_slow
    {do
-      ($lighter
-         [lighter])
-      {set
-         [lighter]
-         slow}
-      {if
-         {&&
-            {==
-               {world get did_lighter_cam}
-               FALSE}
-            {== $lighter off}}
+      ($lighter [lighter])
+      {set [lighter] slow}
+      {if {&& {== {world get did_lighter_cam} FALSE} {== $lighter off}}
          {world pick_lighter_shot}}})
 (crowd_lighters_fast
    {do
-      ($lighter
-         [lighter])
-      {set
-         [lighter]
-         fast}
-      {if
-         {&&
-            {==
-               {world get did_lighter_cam}
-               FALSE}
-            {== $lighter off}}
+      ($lighter [lighter])
+      {set [lighter] fast}
+      {if {&& {== {world get did_lighter_cam} FALSE} {== $lighter off}}
          {world pick_lighter_shot}}})
 (crowd_lighters_off
-   {set
-      [lighter]
-      off}
+   {set [lighter] off}
    {world force_pick_shot})
 (crowd_half_tempo
-   {$this
-      iterate_frac
-      (1
-         {main.drv set beat_scale 0.5})})
+   {$this iterate_frac (1 {main.drv set beat_scale 0.5})})
 (crowd_double_tempo
-   {$this
-      iterate_frac
-      (1
-         {main.drv set beat_scale 2})})
+   {$this iterate_frac (1 {main.drv set beat_scale 2})})
 (crowd_normal_tempo
-   {$this
-      iterate_frac
-      (1
-         {main.drv set beat_scale 1})})
+   {$this iterate_frac (1 {main.drv set beat_scale 1})})
+
+; lighting keyframes
+
+(lighting_nextkey
+   {do
+      {world do_lighting_next_keyframe}})
+(lighting_prevkey
+   {do
+      {world do_lighting_prev_keyframe}})
+(lighting_firstkey
+   {do
+      {world do_lighting_first_keyframe}})
+
+; cameras ON/OFF
+
+(camera_control_on
+   {if {== {gamecfg get mode} career}
+      {set $extracam TRUE}}
+   {if {== {gamecfg get mode} quickplay}
+      {set $extracam TRUE}}
+   {if {== {gamecfg get mode} multi_vs}
+      {set $extracam FALSE}}
+   {if {== {gamecfg get mode} multi_fo}
+      {set $extracam FALSE}}
+   {if {== {gamecfg get mode} multi_coop}
+      {set $extracam FALSE}})
+(camera_control_off
+   {set $extracam FALSE})
+
+; camera cuts
+
+(camera_floor_nearleft
+{if $extracam
+   {do
+      {world pick_shot flr_near_lft}}})
+(camera_floor_nearright
+{if $extracam
+   {do
+      {world pick_shot flr_near_rt}}})
+(camera_floor_farleft
+{if $extracam
+   {do
+      {world pick_shot flr_far_lft}}})
+(camera_floor_farright
+{if $extracam
+   {do
+      {world pick_shot flr_far_rt}}})
+(camera_band_pov
+{if $extracam
+   {do
+      {world pick_shot band_POV}}})
+(camera_balcony_left
+{if $extracam
+   {do
+      {world pick_shot balcony_lft}}})
+(camera_balcony_right
+{if $extracam
+   {do
+      {world pick_shot balcony_rt}}})
+(camera_solo_near
+{if $extracam
+   {do
+      {world pick_shot SOLO_NEAR}}})
+(camera_solo_far
+{if $extracam
+   {do
+      {world pick_shot SOLO_FAR}}})
+(camera_lose
+{if $extracam
+   {do
+      {world pick_shot LOSE}}})
+(camera_win
+{if $extracam
+   {do
+      {world pick_shot WIN}}})
+(camera_win_encore
+{if $extracam
+   {do
+      {world pick_shot WIN_ENCORE}}})
+(camera_win_encore_song
+{if $extracam
+   {do
+      {world pick_shot WIN_ENCORE_SONG}}})
+(camera_intro
+{if $extracam
+   {do
+      {world pick_shot INTRO}}})
+(camera_intro_encore
+{if $extracam
+   {do
+      {world pick_shot INTRO_ENCORE}}})
+(camera_intro_fast
+{if $extracam
+   {do
+      {world pick_shot INTRO_FAST}}})
+(camera_lighter
+{if $extracam
+   {do
+      {world pick_shot LIGHTER}}})
+(camera_cycle_shot
+{if $extracam
+   {do
+      {world cycle_shot}}})
+
+; crowd event
+
+(music_end
+   {if {crowd_audio enabled}
+      {do
+         {world play_sfx crowd_upto_good}}})
