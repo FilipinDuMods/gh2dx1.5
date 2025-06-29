@@ -18,6 +18,7 @@
 (kPad_Square)
 ; modifiers screen
 ((kPad_Select kPad_Select)
+{if $dxmodifiers
    {if
       {&&
          {exists ui}
@@ -46,7 +47,7 @@
          $modifier_exit
          {ui current_screen}}
       {synth play_sequence button_select}
-      {ui goto_screen modifiers_screen}})
+      {ui goto_screen modifiers_screen}}})
 ((G_BLUE G_YELLOW G_ORANGE G_RED G_ORANGE G_YELLOW G_RED G_YELLOW G_RED G_YELLOW G_RED G_YELLOW G_RED G_YELLOW G_RED G_YELLOW)
    {if
       {&&

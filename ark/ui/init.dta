@@ -1,4 +1,7 @@
 ;Functions to enable/disable
+{set $quickplay_dx FALSE} ;enable the freeplay from deluxe (bass in singleplayer)
+{set $quickplay_vanilla TRUE} ;enable the original quickplay
+{set $dxmodifiers TRUE} ;enable deluxe modifiers (select select in setlist)
 {set $no_extras FALSE} ;remove the extra features button
 {set $extras_datasettings FALSE} ;put the extra features in data settings button
 {set $extras_bonusmaterial TRUE} ;put the extra features in bonus videos button
@@ -6,13 +9,12 @@
 {set $autoplay_p1 FALSE} ;autoplay player 1
 {set $autoplay_p2 FALSE} ;autoplay player 2
 {set $disable_carrer FALSE} ;disable carrer
+{set $songtitle FALSE} ;enable deluxe song title always on
 {set $speedmod 1.0} ;deluxe song speed
 {set $trackspd 1.0} ;deluxe track speed
-{set $interval_p0 50} ;deluxe note_streak
-{set $interval_p1 50} ;deluxe note_streak
-{set $interval_p2 50} ;deluxe note_streak
-{set $songtitle FALSE} ;enable deluxe song title always on
-{set $dxmodifiers TRUE} ;enable deluxe modifiers (select select in setlist)
+{set $interval_p0 50} ;deluxe note_streak thing
+{set $interval_p1 50} ;deluxe note_streak thing
+{set $interval_p2 50} ;deluxe note_streak thing
 
 #include splash.dta
 #include manage_bands.dta
@@ -24,7 +26,10 @@
 #include endgame.dta
 #include eggs.dta
 #include lose.dta
-#include quickplay.dta
+{if $quickplay_dx
+	#include quickplay_dx.dta}
+{if $quickplay_vanilla
+	#include quickplay_vanilla}
 #include multiplayer.dta
 #include main.dta
 #include tutorials.dta
