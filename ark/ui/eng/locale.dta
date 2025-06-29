@@ -129,11 +129,11 @@
 (op_bonus_material
 	{if_else $extras_bonusmaterial
 	"Extra Features"
-   "Bonus Videos"})
+	"Bonus Videos"})
 (op_memcard
 	{if_else $extras_datasettings
 	"Extra Features"
-   "Data Settings"})
+	"Data Settings"})
 (op_credits
    "Credits")
 (op_data_settings
@@ -223,7 +223,9 @@
 (video3_shop_desc
    "The Guitar Hero II development team takes you backstage to see what life is REALLY like at Harmonix.")
 (QUICK_PLAY
-   "FREE PLAY")
+	{if_else $quickplay_dx
+   "FREE PLAY"
+	"QUICK PLAY"})
 (QP_SELSONG
    "SELECT SONG")
 (E3_SINGLE_PLAYER
