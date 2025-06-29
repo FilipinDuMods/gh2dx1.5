@@ -1,6 +1,6 @@
 ;Functions to enable/disable
-{set $quickplay_dx FALSE} ;enable the freeplay from deluxe (bass in singleplayer)
-{set $quickplay_vanilla TRUE} ;enable the original quickplay
+{set $quickplay_dx TRUE} ;enable the freeplay from deluxe (bass in singleplayer)
+{set $quickplay_vanilla FALSE} ;enable the original quickplay
 {set $dxmodifiers TRUE} ;enable deluxe modifiers (select select in setlist)
 {set $no_extras FALSE} ;remove the extra features button
 {set $extras_datasettings FALSE} ;put the extra features in data settings button
