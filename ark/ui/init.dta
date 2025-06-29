@@ -12,6 +12,8 @@
 {set $disable_carrer FALSE} ;disable carrer
 {set $songtitle FALSE} ;deluxe song title always on
 {set $skip_selpart_screen FALSE} ;skip bass selection (for custom songs)
+
+;Deluxe values
 {set $speedmod 1.0} ;deluxe song speed
 {set $trackspd 1.0} ;deluxe track speed
 {set $interval_p0 50} ;deluxe note_streak thing
