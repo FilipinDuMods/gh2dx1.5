@@ -14,7 +14,10 @@
    (show_hud TRUE)
    (show_track TRUE)
    (encore_fx FALSE)
-   (track_surface_override '')
+   (track_surface_override
+		{if_else $focusmode 
+			focusmode
+			""})
    (crowd_audio TRUE)
    (star_power_disable FALSE)
    (shared_star_meter FALSE)
@@ -45,7 +48,10 @@
       {if_else $egg5 main_screen_egg main_screen})
    (loading_screen practice_loading_screen)
    (game_screen practice_game_screen)
-   (track_surface_override rosewood)
+   (track_surface_override
+		{if_else $focusmode 
+			focusmode
+			rosewood})
    (song_block
       {if_else
          {gamecfg pre_processed_audio}

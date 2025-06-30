@@ -398,6 +398,8 @@
          world
          main})
    (enter
+		{if $focusmode
+			{crowd_audio set_enabled FALSE}}
       {if_else
          {game multiplayer}
          {handle
